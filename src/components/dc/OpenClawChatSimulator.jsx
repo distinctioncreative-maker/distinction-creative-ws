@@ -16,6 +16,7 @@ export default function OpenClawChatSimulator() {
   const [typing, setTyping] = useState(false);
   const [idx, setIdx] = useState(0);
   const bottomRef = useRef(null);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     if (idx >= CONVERSATION.length) {
