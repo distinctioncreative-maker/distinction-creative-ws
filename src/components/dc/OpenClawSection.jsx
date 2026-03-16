@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
+import useReveal from '../../hooks/useReveal';
 import OpenClawChatSimulator from './OpenClawChatSimulator';
 
 const CAPABILITIES = [
-  { label: 'Multi-channel gateway', body: 'One agent, accessible across WhatsApp, Telegram, Discord, iMessage, Slack, and more — simultaneously.' },
+  { label: 'Multi-channel gateway', body: 'One agent, accessible across WhatsApp, Telegram, Discord, iMessage, Slack, and more. Simultaneously.' },
   { label: 'Conversational AI', body: 'Send a message, get an intelligent response. Ask about leads, KPIs, reports, or trigger actions directly from your phone.' },
-  { label: 'Proactive intelligence', body: 'OpenClaw doesn\'t wait to be asked — it delivers daily briefs, lead alerts, and performance summaries on schedule.' },
+  { label: 'Proactive intelligence', body: 'The communication layer does not wait to be asked. It delivers daily briefs, lead alerts, and performance summaries on schedule.' },
   { label: 'Agent-native architecture', body: 'Built for multi-agent routing with session memory, tool use, and workspace isolation per sender.' },
 ];
 
@@ -19,21 +19,7 @@ const CHANNELS = [
 ];
 
 export default function OpenClawSection() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 100);
-          });
-        }
-      });
-    }, { threshold: 0.1 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+  const ref = useReveal();
 
   return (
     <section id="communication" ref={ref} style={{
@@ -56,7 +42,7 @@ export default function OpenClawSection() {
               fontSize: 10, fontWeight: 700, letterSpacing: '0.18em',
               textTransform: 'uppercase', color: 'rgba(201,168,76,0.7)', marginBottom: 16,
             }}>
-              OpenClaw — AI Agent Gateway
+              Executive Contact Layer
             </div>
 
             <h2 className="reveal" style={{
@@ -66,13 +52,13 @@ export default function OpenClawSection() {
               letterSpacing: '-0.022em', color: '#F0EEE8',
               marginBottom: 20,
             }}>
-              Your Business AI,<br />
+              Stay Connected to<br />
               <span style={{
                 background: 'linear-gradient(135deg, #B8902A, #E8C97A, #C9A84C)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}>
-                In Your Pocket.
+                Your Business.
               </span>
             </h2>
 
@@ -80,14 +66,14 @@ export default function OpenClawSection() {
               fontSize: 15, lineHeight: 1.82,
               color: 'rgba(240,238,232,0.52)', marginBottom: 20,
             }}>
-              OpenClaw is an AI agent gateway — a self-hosted bridge between your favorite messaging apps and an always-available business intelligence assistant. Send a message, get an intelligent agent response, from anywhere.
+              As part of Distinction OS, we configure a powerful direct-to-owner communication layer. This keeps you connected to real-time alerts, daily performance summaries, and key metric updates through any channel you prefer.
             </p>
 
             <p className="reveal" style={{
               fontSize: 15, lineHeight: 1.82,
               color: 'rgba(240,238,232,0.52)', marginBottom: 36,
             }}>
-              Configured as part of your Distinction OS installation, OpenClaw connects every layer of your system — so you can query leads, trigger follow-ups, and receive proactive summaries directly through WhatsApp, Telegram, Discord, or any channel you prefer.
+              OpenClaw is one of the secure communication frameworks we utilize to enable this configured contact layer. It acts as a bridge between your Distinction OS environment and channels like WhatsApp, Telegram, Discord, or SMS, integrating seamlessly into the broader system.
             </p>
 
             {/* Capabilities */}

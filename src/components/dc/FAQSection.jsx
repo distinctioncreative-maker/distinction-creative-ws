@@ -1,18 +1,18 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 const FAQS = [
   {
     q: 'What exactly is Distinction OS?',
-    a: 'Distinction OS is the flagship AI infrastructure system installed by Distinction Creative. It combines a premium website, AI chatbot, KPI portal, lead capture systems, workflow automations, and a merchant communication layer — all configured around your specific business.',
+    a: 'Distinction OS is the flagship AI infrastructure system installed by Distinction Creative. It combines a premium website, AI chatbot, KPI portal, lead capture systems, workflow automations, and a merchant communication layer, all configured around your specific business.',
   },
   {
     q: 'Do you work with my existing tools and software?',
-    a: 'Yes. Our process begins with a thorough discovery phase where we assess your current stack. We integrate with what works and strategically enhance or replace what limits you. Nothing is forced — everything is purpose-built for your environment.',
+    a: 'Yes. Our process begins with a thorough discovery phase where we assess your current stack. We integrate with what works and strategically enhance or replace what limits you. Nothing is forced. Everything is purpose-built for your environment.',
   },
   {
     q: 'What is the communication layer and what does OpenClaw have to do with it?',
-    a: 'The communication layer is a configured part of Distinction OS that delivers business intelligence, lead alerts, summaries, and KPI updates directly to you through channels like Slack, Telegram, WhatsApp, or SMS. OpenClaw is one tool we may use when implementing this layer — it acts as a configured contact interface between you and your system.',
+    a: 'The communication layer is a configured part of Distinction OS that delivers business intelligence, lead alerts, summaries, and KPI updates directly to you through channels like Slack, Telegram, WhatsApp, or SMS. OpenClaw is one of the secure frameworks we may utilize when implementing this layer. It acts as a configured contact interface between you and your system.',
   },
   {
     q: 'How long does an implementation take?',
@@ -20,31 +20,17 @@ const FAQS = [
   },
   {
     q: 'How is pricing determined?',
-    a: 'Final pricing is scoped after discovery. The variables that affect cost include: integration complexity, number of connected systems, portal configuration depth, automation requirements, and whether a communication layer is included. Every engagement begins with an honest assessment.',
+    a: 'Final pricing is scoped after discovery. The variables that affect cost include integration complexity, number of connected systems, portal configuration depth, automation requirements, and whether a communication layer is included. Every engagement begins with an honest assessment.',
   },
   {
     q: 'Do I need to be technical to use Distinction OS?',
-    a: 'Not at all. Distinction Creative handles the full installation, configuration, and ongoing optimisation. You receive a clean portal interface and direct-to-owner updates through your preferred channel — no technical knowledge required.',
+    a: 'Not at all. Distinction Creative handles the full installation, configuration, and ongoing optimisation. You receive a clean portal interface and direct-to-owner updates through your preferred channel. No technical knowledge required.',
   },
 ];
 
 export default function FAQSection() {
-  const ref = useRef(null);
+  const ref = useReveal();
   const [open, setOpen] = useState(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 80);
-          });
-        }
-      });
-    }, { threshold: 0.1 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
 
   return (
     <section id="faq" ref={ref} style={{

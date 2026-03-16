@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 const TOOLS = [
@@ -17,21 +16,7 @@ const TOOLS = [
 ];
 
 export default function CurrentStackSection() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 80);
-          });
-        }
-      });
-    }, { threshold: 0.1 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+  const ref = useReveal();
 
   return (
     <section ref={ref} style={{
@@ -68,13 +53,13 @@ export default function CurrentStackSection() {
               fontSize: 16, lineHeight: 1.75,
               color: 'rgba(240,238,232,0.55)', marginBottom: 32,
             }}>
-              Most businesses already run on a collection of tools — payment processors, CRMs, scheduling platforms, messaging apps. We don't ask you to throw that away.
+              Most businesses already run on a collection of tools: payment processors, CRMs, scheduling platforms, messaging apps. We do not ask you to throw that away.
             </p>
             <p className="reveal" style={{
               fontSize: 16, lineHeight: 1.75,
               color: 'rgba(240,238,232,0.55)', marginBottom: 40,
             }}>
-              Our discovery process maps your current environment. We assess what's working, what's costing you, and what gaps are limiting your growth. Then we install Distinction OS to unify, enhance, and elevate the whole stack.
+              Our discovery process maps your current environment. We assess what is working, what is costing you, and what gaps are limiting your growth. Then we install Distinction OS to unify, enhance, and elevate the whole stack.
             </p>
 
             {/* Three signals */}

@@ -1,24 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 export default function FinalCTASection() {
-  const ref = useRef(null);
+  const ref = useReveal();
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: '', company: '', email: '', message: '' });
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 100);
-          });
-        }
-      });
-    }, { threshold: 0.1 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +47,7 @@ export default function FinalCTASection() {
             textTransform: 'uppercase', color: '#C9A84C',
           }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#C9A84C', display: 'block' }} />
-            Ready to Install
+            Schedule a Discovery Call
           </span>
         </div>
 
@@ -72,13 +58,13 @@ export default function FinalCTASection() {
           letterSpacing: '-0.025em', color: '#F0EEE8',
           textAlign: 'center', marginBottom: 20,
         }}>
-          Upgrade the Way<br />
+          Unlock Your<br />
           <span style={{
             background: 'linear-gradient(135deg, #C9A84C 0%, #E8C97A 55%, #C9A84C 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
-            Your Business Operates.
+            AI Advantage.
           </span>
         </h2>
 
@@ -87,7 +73,7 @@ export default function FinalCTASection() {
           color: 'rgba(240,238,232,0.5)',
           textAlign: 'center', maxWidth: 580, margin: '0 auto 60px',
         }}>
-          Book a strategy session. We'll assess your current environment, map the right system, and show you exactly how Distinction OS would be installed into your business.
+          Book a strategy session. We will assess your current environment, map the right system architecture, and show you exactly how Distinction OS would be installed into your business.
         </p>
 
         {/* Form */}
@@ -122,7 +108,7 @@ export default function FinalCTASection() {
                   <input
                     required value={form.name}
                     onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
-                    placeholder="First & Last Name"
+                    placeholder="First and Last Name"
                     style={inputStyle}
                     onFocus={e => e.target.style.borderColor = 'rgba(201,168,76,0.4)'}
                     onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
@@ -175,7 +161,7 @@ export default function FinalCTASection() {
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.9'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
-                Request Strategy Session
+                Schedule My Discovery Call
               </button>
               <p style={{ fontSize: 12, color: 'rgba(240,238,232,0.3)', textAlign: 'center', marginTop: 14, lineHeight: 1.5 }}>
                 We review every inquiry personally. A response arrives within 24 hours.

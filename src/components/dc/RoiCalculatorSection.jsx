@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 const BOOST_PRESETS = [
@@ -10,44 +10,25 @@ const BOOST_PRESETS = [
 const fmt = (n) => '$' + Math.round(n).toLocaleString();
 
 export default function RoiCalculatorSection() {
-  const ref = useRef(null);
+  const ref = useReveal();
 
-  // Inputs
   const [leads, setLeads] = useState(150);
   const [leadValue, setLeadValue] = useState(2500);
   const [convRate, setConvRate] = useState(4);
   const [responseHours, setResponseHours] = useState(6);
   const [boostIdx, setBoostIdx] = useState(1);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 80);
-          });
-        }
-      });
-    }, { threshold: 0.08 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
   const boost = BOOST_PRESETS[boostIdx].pct / 100;
 
-  // Conversion uplift
   const currentRevenue = leads * (convRate / 100) * leadValue;
   const newConvRate = convRate * (1 + boost);
   const newRevenue = leads * (newConvRate / 100) * leadValue;
   const convUplift = newRevenue - currentRevenue;
 
-  // Response time uplift — faster response = more leads saved
-  // Industry benchmark: each hour of delay = ~10% lead quality drop; Distinction OS targets <10s
-  const leadsLostToDelay = leads * Math.min(responseHours * 0.06, 0.55); // up to 55% lost
-  const leadsRecovered = leadsLostToDelay * 0.6; // recover 60% with instant AI response
+  const leadsLostToDelay = leads * Math.min(responseHours * 0.06, 0.55);
+  const leadsRecovered = leadsLostToDelay * 0.6;
   const responseUplift = leadsRecovered * (convRate / 100) * leadValue;
 
-  // Operational efficiency — rough estimate: 1 FTE hour per 8 leads handled manually, saved at $75/hr
   const hoursPerMonth = (leads / 8) * 0.5;
   const opsUplift = hoursPerMonth * 75;
 
@@ -62,24 +43,6 @@ export default function RoiCalculatorSection() {
     fontSize: 15, fontFamily: 'Inter', outline: 'none',
     transition: 'border-color 0.2s cubic-bezier(0.16,1,0.3,1)',
   };
-
-  const statCard = (label, value, accent, large) => (
-    <div style={{
-      padding: large ? '20px 22px' : '16px 20px',
-      background: large ? 'linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.03))' : 'rgba(255,255,255,0.03)',
-      border: `1px solid ${large ? 'rgba(201,168,76,0.28)' : 'rgba(255,255,255,0.06)'}`,
-      borderRadius: 12,
-      marginBottom: 10,
-    }}>
-      <div style={{ fontSize: 11, color: 'rgba(240,238,232,0.42)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 6 }}>{label}</div>
-      <div style={{
-        fontFamily: 'Inter', fontWeight: 900, letterSpacing: '-0.03em',
-        fontSize: large ? 38 : 24,
-        color: accent || '#F0EEE8',
-        lineHeight: 1,
-      }}>{value}</div>
-    </div>
-  );
 
   return (
     <section id="roi-calculator" ref={ref} style={{
@@ -121,7 +84,7 @@ export default function RoiCalculatorSection() {
             fontSize: 17, color: 'rgba(240,238,232,0.48)',
             maxWidth: 560, margin: '0 auto', lineHeight: 1.8,
           }}>
-            Model your real revenue across three dimensions — conversion, response speed, and operational efficiency — and see the compounding impact Distinction OS delivers.
+            Model your real revenue across three dimensions: conversion, response speed, and operational efficiency. See the compounding impact Distinction OS delivers.
           </p>
         </div>
 
@@ -130,7 +93,7 @@ export default function RoiCalculatorSection() {
           gap: 32, alignItems: 'start',
         }}>
 
-          {/* LEFT — Inputs */}
+          {/* LEFT: Inputs */}
           <div style={{
             background: 'rgba(255,255,255,0.02)',
             border: '1px solid rgba(255,255,255,0.065)',
@@ -142,7 +105,6 @@ export default function RoiCalculatorSection() {
               fontSize: 22, fontWeight: 700, color: '#F0EEE8', marginBottom: 32,
             }}>Your Business Today</h3>
 
-            {/* Input fields */}
             {[
               { label: 'Monthly Inbound Leads', value: leads, setter: setLeads, min: 1, max: 99999 },
               { label: 'Average Deal / Lead Value ($)', value: leadValue, setter: setLeadValue, min: 1, max: 9999999 },
@@ -203,9 +165,8 @@ export default function RoiCalculatorSection() {
             </div>
           </div>
 
-          {/* RIGHT — Results */}
+          {/* RIGHT: Results */}
           <div>
-            {/* Three uplift cards */}
             <div style={{ marginBottom: 14 }}>
               <div style={{
                 fontSize: 10, fontWeight: 800, letterSpacing: '0.1em',
@@ -214,8 +175,8 @@ export default function RoiCalculatorSection() {
               }}>Uplift Breakdown</div>
 
               {[
-                { label: 'Conversion Rate Uplift', value: fmt(convUplift) + ' / mo', accent: '#C9A84C', note: `${convRate.toFixed(1)}% → ${newConvRate.toFixed(1)}% close rate` },
-                { label: 'Response Speed Recovery', value: fmt(responseUplift) + ' / mo', accent: '#5CC8B0', note: `AI responds in <10s vs your ${responseHours}hr avg` },
+                { label: 'Conversion Rate Uplift', value: fmt(convUplift) + ' / mo', accent: '#C9A84C', note: `${convRate.toFixed(1)}% to ${newConvRate.toFixed(1)}% close rate` },
+                { label: 'Response Speed Recovery', value: fmt(responseUplift) + ' / mo', accent: '#5CC8B0', note: `AI responds in under 10s vs your ${responseHours}hr avg` },
                 { label: 'Operational Efficiency', value: fmt(opsUplift) + ' / mo', accent: '#638CFE', note: `~${Math.round(hoursPerMonth)} hrs/mo of manual work automated` },
               ].map(item => (
                 <div key={item.label} style={{
@@ -278,7 +239,7 @@ export default function RoiCalculatorSection() {
                 borderTop: '1px solid rgba(201,168,76,0.12)',
                 fontSize: 12, color: 'rgba(240,238,232,0.32)', lineHeight: 1.6,
               }}>
-                Based on your inputs and the <strong style={{ color: 'rgba(240,238,232,0.5)' }}>{BOOST_PRESETS[boostIdx].label.toLowerCase()}</strong> adoption scenario. Estimates are conservative and directional — actual results vary by industry and implementation.
+                Based on your inputs and the <strong style={{ color: 'rgba(240,238,232,0.5)' }}>{BOOST_PRESETS[boostIdx].label.toLowerCase()}</strong> adoption scenario. Estimates are conservative and directional. Actual results vary by industry and implementation.
               </div>
             </div>
 
@@ -297,7 +258,7 @@ export default function RoiCalculatorSection() {
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 10px 36px rgba(201,168,76,0.38)'; }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(201,168,76,0.22)'; }}
             >
-              Book a Session — Let's Build This →
+              Book a Session. Let's Build This.
             </a>
           </div>
         </div>

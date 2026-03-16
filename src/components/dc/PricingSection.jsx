@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 const TIERS = [
@@ -10,12 +9,12 @@ const TIERS = [
     billing: '/ setup + monthly retainer',
     tagline: 'A strong digital foundation for growing businesses.',
     features: [
-      'Premium website design & deployment',
+      'Premium website design and deployment',
       'AI chatbot installation',
       'Core KPI portal',
       'One primary integration',
-      'OpenClaw daily brief (SMS)',
-      'Onboarding & configuration',
+      'Communication layer setup (SMS)',
+      'Onboarding and configuration',
     ],
     cta: 'Inquire About Foundation',
     featured: false,
@@ -33,9 +32,9 @@ const TIERS = [
       'Full Distinction OS installation',
       'Multi-integration architecture',
       'Advanced KPI portal configuration',
-      'OpenClaw on all preferred channels',
+      'Communication layer on all preferred channels',
       'Custom automation layer',
-      'Executive reporting & analytics',
+      'Executive reporting and analytics',
       'Priority implementation support',
       'Post-install optimization cycle',
     ],
@@ -54,9 +53,9 @@ const TIERS = [
       'Everything in Foundation',
       'Multi-system integration',
       'Advanced portal KPIs',
-      'OpenClaw multi-channel delivery',
+      'Communication layer multi-channel delivery',
       'Automation sequences',
-      'Lead routing & follow-up logic',
+      'Lead routing and follow-up logic',
       'Implementation strategy session',
     ],
     cta: 'Inquire About Growth',
@@ -66,21 +65,7 @@ const TIERS = [
 ];
 
 export default function PricingSection() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 100);
-          });
-        }
-      });
-    }, { threshold: 0.08 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+  const ref = useReveal();
 
   return (
     <section id="pricing" ref={ref} style={{
@@ -122,12 +107,12 @@ export default function PricingSection() {
           </p>
         </div>
 
-        {/* Tiers — featured in center */}
+        {/* Tiers */}
         <div style={{
           display: 'grid', gridTemplateColumns: '1fr 1.12fr 1fr',
           gap: 16, alignItems: 'start',
         }}>
-          {TIERS.map((tier, i) => (
+          {TIERS.map((tier) => (
             <TierCard key={tier.name} tier={tier} />
           ))}
         </div>

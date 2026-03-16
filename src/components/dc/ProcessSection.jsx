@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 const STEPS = [
@@ -13,22 +13,22 @@ const STEPS = [
     num: '02',
     title: 'System Design',
     sub: 'We architect your OS.',
-    desc: 'We determine the optimal Distinction OS configuration for your business — which integrations to keep, what to replace, how OpenClaw should communicate, and what your portal needs to show.',
-    details: ['Integration architecture', 'Portal configuration plan', 'OpenClaw channel setup', 'Automation blueprint'],
+    desc: 'We determine the optimal Distinction OS configuration for your business: which integrations to keep, what to replace, how the communication layer should operate, and what your portal needs to show.',
+    details: ['Integration architecture', 'Portal configuration plan', 'Communication channel setup', 'Automation blueprint'],
   },
   {
     num: '03',
     title: 'Integration',
     sub: 'We connect your world.',
-    desc: 'We connect Distinction OS to your existing systems — CRM, payments, scheduling, analytics, POS, communication tools. Data flows into one canonical model.',
-    details: ['API & webhook connections', 'Data normalization', 'CRM migration support', 'Channel configuration'],
+    desc: 'We connect Distinction OS to your existing systems: CRM, payments, scheduling, analytics, POS, and communication tools. Data flows into one canonical model.',
+    details: ['API and webhook connections', 'Data normalization', 'CRM migration support', 'Channel configuration'],
   },
   {
     num: '04',
     title: 'Installation',
     sub: 'We go live.',
-    desc: 'We deploy your premium website, activate your AI chatbot, configure your KPI portal, and bring OpenClaw online — tested, validated, and fully operational.',
-    details: ['Website deployment', 'AI chatbot activation', 'Portal go-live', 'OpenClaw daily briefs'],
+    desc: 'We deploy your premium website, activate your AI chatbot, configure your KPI portal, and bring the communication layer online: tested, validated, and fully operational.',
+    details: ['Website deployment', 'AI chatbot activation', 'Portal go-live', 'Communication layer setup'],
   },
   {
     num: '05',
@@ -40,22 +40,8 @@ const STEPS = [
 ];
 
 export default function ProcessSection() {
-  const ref = useRef(null);
+  const ref = useReveal();
   const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 100);
-          });
-        }
-      });
-    }, { threshold: 0.1 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
 
   return (
     <section id="process" ref={ref} style={{
@@ -78,7 +64,7 @@ export default function ProcessSection() {
             letterSpacing: '-0.02em', color: '#F0EEE8',
             marginBottom: 20,
           }}>
-            Discovery → Integration →<br />Installation
+            Discovery. Integration.<br />Installation.
           </h2>
           <p className="reveal" style={{
             fontSize: 17, color: 'rgba(240,238,232,0.5)',

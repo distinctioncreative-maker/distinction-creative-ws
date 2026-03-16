@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 const RESULTS = [
@@ -7,7 +6,7 @@ const RESULTS = [
     area: 'Lead Response Speed',
     company: 'Regional Services Group',
     industry: 'Professional Services',
-    description: 'Installed Distinction OS with AI chatbot and automated lead routing. Response time dropped from 6 hours to under 10 seconds. Qualified lead volume increased by 3× within 90 days.',
+    description: 'Installed Distinction OS with AI chatbot and automated lead routing. Response time dropped from 6 hours to under 10 seconds. Qualified lead volume increased 3x within 90 days.',
     accent: '#5CC8B0',
     rgb: '92,200,176',
     tags: ['AI Chatbot', 'Lead Routing', 'KPI Portal'],
@@ -17,7 +16,7 @@ const RESULTS = [
     area: 'Conversion Rate',
     company: 'Aether Capital Partners',
     industry: 'Financial Advisory',
-    description: 'Distinction OS integrated with existing CRM, overlaid a qualification chatbot, and delivered daily pipeline briefings through the merchant communication layer. Close rate improved 28% in first quarter.',
+    description: 'Distinction OS integrated with existing CRM, overlaid a qualification chatbot, and delivered daily pipeline briefings through the communication layer. Close rate improved 28% in the first quarter.',
     accent: '#C9A84C',
     rgb: '201,168,76',
     tags: ['CRM Integration', 'Automation', 'Communication Layer'],
@@ -27,7 +26,7 @@ const RESULTS = [
     area: 'Operational Visibility',
     company: 'Zenith Property Group',
     industry: 'Real Estate',
-    description: 'Replaced fragmented tools with a unified Distinction OS installation. Full pipeline, chatbot performance, and booking data centralised in one portal. Team eliminated 20+ hrs/week of manual reporting.',
+    description: 'Replaced fragmented tools with a unified Distinction OS installation. Full pipeline, chatbot performance, and booking data centralised in one portal. The team eliminated 20+ hours per week of manual reporting.',
     accent: '#638CFE',
     rgb: '99,140,254',
     tags: ['Portal', 'Workflow Automation', 'Reporting'],
@@ -35,21 +34,7 @@ const RESULTS = [
 ];
 
 export default function CaseStudiesSection() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 100);
-          });
-        }
-      });
-    }, { threshold: 0.08 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+  const ref = useReveal();
 
   return (
     <section id="results" ref={ref} style={{
@@ -91,7 +76,7 @@ export default function CaseStudiesSection() {
             fontSize: 17, color: 'rgba(240,238,232,0.48)',
             maxWidth: 500, margin: '0 auto', lineHeight: 1.75,
           }}>
-            Real outcomes across industries. Businesses that moved faster, converted better, and gained control of their operations.
+            Real outcomes across industries. Businesses that moved faster, converted better, and gained complete control of their operations.
           </p>
         </div>
 

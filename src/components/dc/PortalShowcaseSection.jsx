@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 const TABS = [
@@ -17,7 +17,7 @@ const LEAD_ROWS = [
 const KPI_CARDS = [
   { label: 'Monthly Revenue', value: '$184,200', delta: '+23%', color: '#C9A84C' },
   { label: 'Leads This Month', value: '312', delta: '+41%', color: '#5CC8B0' },
-  { label: 'Avg Response Time', value: '8.2s', delta: '−97%', color: '#638CFE' },
+  { label: 'Avg Response Time', value: '8.2s', delta: '-97%', color: '#638CFE' },
   { label: 'Conversion Rate', value: '6.4%', delta: '+2.1%', color: '#A078F0' },
 ];
 
@@ -28,22 +28,8 @@ const CHATBOT_STATS = [
 ];
 
 export default function PortalShowcaseSection() {
-  const ref = useRef(null);
+  const ref = useReveal();
   const [activeTab, setActiveTab] = useState('leads');
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 100);
-          });
-        }
-      });
-    }, { threshold: 0.08 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
 
   return (
     <section id="portal" ref={ref} style={{
@@ -66,7 +52,7 @@ export default function PortalShowcaseSection() {
               fontSize: 11, fontWeight: 700, letterSpacing: '0.14em',
               textTransform: 'uppercase', color: '#638CFE', marginBottom: 20,
             }}>
-              KPI Portal
+              Comprehensive Command Center
             </div>
             <h2 className="reveal" style={{
               fontFamily: 'Playfair Display, Georgia, serif',
@@ -81,15 +67,15 @@ export default function PortalShowcaseSection() {
               fontSize: 16, lineHeight: 1.75,
               color: 'rgba(240,238,232,0.52)',
             }}>
-              Distinction OS provides a clean, executive-grade portal that unifies lead data, chatbot performance, revenue KPIs, and operational metrics — all in one place, updated in real time.
+              Distinction OS delivers a clean, executive-grade portal that unifies lead data, pipeline tracking, chatbot performance, revenue KPIs, and operational metrics. All in one place, updated in real time.
             </p>
           </div>
           <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             {[
-              { icon: '◈', title: 'Live lead tracking & qualification scores', color: '#5CC8B0' },
-              { icon: '▣', title: 'Revenue pipeline & conversion analytics', color: '#C9A84C' },
-              { icon: '◎', title: 'Chatbot performance & conversation data', color: '#638CFE' },
-              { icon: '⬡', title: 'Automation health & workflow monitoring', color: '#A078F0' },
+              { icon: '◈', title: 'Dynamic lead tracking and qualification scores', color: '#5CC8B0' },
+              { icon: '▣', title: 'Intelligent pipeline management and deal forecasting', color: '#C9A84C' },
+              { icon: '◎', title: 'Chatbot performance and conversation analytics', color: '#638CFE' },
+              { icon: '⬡', title: 'Real-time financial and operational metrics', color: '#A078F0' },
             ].map((item, i) => (
               <div key={i} style={{
                 display: 'flex', alignItems: 'center', gap: 14,
@@ -240,7 +226,6 @@ export default function PortalShowcaseSection() {
                   }}>
                     <div style={{ fontSize: 11, color: 'rgba(240,238,232,0.4)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 8 }}>{stat.label}</div>
                     <div style={{ fontSize: 28, fontWeight: 900, color: '#638CFE', letterSpacing: '-0.03em', lineHeight: 1, marginBottom: 16 }}>{stat.value}</div>
-                    {/* Mini sparkline */}
                     <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3, height: 32 }}>
                       {stat.week.map((v, j) => {
                         const max = Math.max(...stat.week);

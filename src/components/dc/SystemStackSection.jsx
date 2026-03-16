@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 const LAYERS = [
@@ -15,7 +15,7 @@ const LAYERS = [
     id: 'chatbot',
     label: 'AI Chatbot',
     tag: 'Layer 02',
-    desc: 'An intelligent AI agent embedded in your website. It answers questions, qualifies leads, books appointments, and routes high-intent visitors — 24/7.',
+    desc: 'An intelligent AI agent embedded in your website. It answers questions, qualifies leads, books appointments, and routes high-intent visitors around the clock.',
     icon: '◎',
     accent: '#638CFE',
     rgb: '99,140,254',
@@ -24,16 +24,16 @@ const LAYERS = [
     id: 'portal',
     label: 'KPI Portal',
     tag: 'Layer 03',
-    desc: 'Your business control center. A clean portal giving you full visibility into leads, conversations, appointments, chatbot performance, and operational KPIs.',
+    desc: 'Your business command center. A clean, executive-grade portal giving you full visibility into leads, pipeline, appointments, chatbot performance, and operational KPIs in real time.',
     icon: '▣',
     accent: '#5CC8B0',
     rgb: '92,200,176',
   },
   {
-    id: 'openclaw',
-    label: 'OpenClaw Assistant',
+    id: 'comms',
+    label: 'Communication Layer',
     tag: 'Layer 04',
-    desc: 'Your always-on business intelligence assistant. OpenClaw proactively delivers daily summaries, alerts, and insights through Slack, Telegram, WhatsApp, or SMS.',
+    desc: 'A configured contact layer that delivers proactive business intelligence directly to you. Real-time alerts, daily summaries, and KPI updates through Slack, Telegram, WhatsApp, or SMS.',
     icon: '⬡',
     accent: '#C9A84C',
     rgb: '201,168,76',
@@ -50,21 +50,7 @@ const LAYERS = [
 ];
 
 export default function SystemStackSection() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 100);
-          });
-        }
-      });
-    }, { threshold: 0.08 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+  const ref = useReveal();
 
   return (
     <section id="system" ref={ref} style={{
