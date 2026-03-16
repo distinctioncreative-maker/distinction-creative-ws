@@ -87,7 +87,7 @@ export default function OpenClawChatSimulator() {
       </div>
 
       {/* Messages */}
-      <div style={{
+      <div ref={scrollRef} style={{
         flex: 1, overflowY: 'auto', padding: '18px 16px',
         display: 'flex', flexDirection: 'column', gap: 12,
         scrollbarWidth: 'none',
