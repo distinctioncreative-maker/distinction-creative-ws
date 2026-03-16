@@ -12,7 +12,7 @@ export default function Navigation() {
 
   const links = [
     { label: 'System', href: '#system' },
-    { label: 'OpenClaw', href: '#openclaw' },
+    { label: 'Portal', href: '#portal' },
     { label: 'Process', href: '#process' },
     { label: 'Pricing', href: '#pricing' },
   ];

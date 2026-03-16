@@ -3,40 +3,36 @@ import { useEffect, useRef, useState } from 'react';
 const MESSAGES = [
   {
     time: '7:02 AM',
-    type: 'brief',
     label: 'Daily Brief',
-    content: 'Good morning. 14 leads captured overnight — 6 qualified. 3 appointments booked for today. Revenue pipeline up 18% vs last week. 2 items need your attention.',
+    content: 'Good morning. 14 leads captured overnight — 6 qualified. 3 appointments booked for today. Revenue pipeline up 18% vs last week.',
     accent: '#C9A84C',
   },
   {
     time: '11:43 AM',
-    type: 'alert',
     label: 'Lead Alert',
-    content: 'High-intent lead just submitted. Sarah M. — enterprise inquiry, budget confirmed. Chatbot qualified. Awaiting your reply or auto-routing.',
+    content: 'High-intent lead just submitted. Enterprise inquiry, budget confirmed. AI chatbot qualified. Awaiting routing or your reply.',
     accent: '#5CC8B0',
   },
   {
     time: '2:18 PM',
-    type: 'kpi',
     label: 'KPI Update',
-    content: 'Today\'s chatbot handled 47 conversations. 12 qualified leads. Response time avg: 8 seconds. Appointment conversion rate: 26% — above 30-day avg.',
+    content: 'Chatbot handled 47 conversations today. 12 qualified. Response avg: 8 seconds. Appointment conversion: 26% — above 30-day avg.',
     accent: '#638CFE',
   },
   {
     time: '5:55 PM',
-    type: 'nudge',
     label: 'Action Required',
-    content: '3 open follow-ups from this week remain unresolved. Would you like me to schedule them or send automated follow-up sequences?',
+    content: '3 open follow-ups remain unresolved. Shall I trigger the automated follow-up sequences or flag for manual review?',
     accent: '#A078F0',
   },
 ];
 
 const CHANNELS = [
-  { name: 'Slack', icon: '#', color: '#4A154B' },
-  { name: 'Telegram', icon: '✈', color: '#2CA5E0' },
-  { name: 'WhatsApp', icon: '◎', color: '#25D366' },
-  { name: 'Discord', icon: '◈', color: '#5865F2' },
-  { name: 'SMS', icon: '▣', color: '#C9A84C' },
+  { name: 'Slack', color: '#4A154B' },
+  { name: 'Telegram', color: '#2CA5E0' },
+  { name: 'WhatsApp', color: '#25D366' },
+  { name: 'Discord', color: '#5865F2' },
+  { name: 'SMS', color: '#C9A84C' },
 ];
 
 export default function OpenClawSection() {
@@ -63,11 +59,10 @@ export default function OpenClawSection() {
   }, []);
 
   return (
-    <section id="openclaw" ref={ref} style={{
+    <section id="communication" ref={ref} style={{
       background: '#06080F', padding: '120px 32px',
       position: 'relative', overflow: 'hidden',
     }}>
-      {/* Glow */}
       <div style={{
         position: 'absolute', top: '30%', right: '-100px',
         width: 500, height: 500,
@@ -77,13 +72,14 @@ export default function OpenClawSection() {
 
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+
           {/* Left: Copy */}
           <div>
             <div className="reveal" style={{
               fontSize: 11, fontWeight: 700, letterSpacing: '0.12em',
               textTransform: 'uppercase', color: '#C9A84C', marginBottom: 20,
             }}>
-              OpenClaw
+              Merchant Communication Layer
             </div>
             <h2 className="reveal" style={{
               fontFamily: 'Playfair Display, Georgia, serif',
@@ -92,39 +88,62 @@ export default function OpenClawSection() {
               letterSpacing: '-0.02em', color: '#F0EEE8',
               marginBottom: 24,
             }}>
-              Your Business<br />Comes To You.
+              Your Business<br />Comes Directly to You.
             </h2>
             <p className="reveal" style={{
               fontSize: 16, lineHeight: 1.75,
-              color: 'rgba(240,238,232,0.55)', marginBottom: 28,
+              color: 'rgba(240,238,232,0.55)', marginBottom: 20,
             }}>
-              OpenClaw is the proactive intelligence layer inside Distinction OS. It doesn't wait for you to log in. Every morning, every lead alert, every metric shift — delivered directly to you through the channel you already use.
+              As part of Distinction OS, we configure a direct-to-owner communication layer — so you receive business intelligence, lead alerts, performance updates, and operational summaries through whichever channel you already use.
             </p>
             <p className="reveal" style={{
               fontSize: 16, lineHeight: 1.75,
-              color: 'rgba(240,238,232,0.55)', marginBottom: 40,
+              color: 'rgba(240,238,232,0.55)', marginBottom: 32,
             }}>
-              This is not a notification system. It's a business communication layer that keeps the owner informed, prompts the right actions, and ensures nothing falls through the cracks.
+              We can implement this layer using tools like <span style={{ color: '#C9A84C', fontWeight: 600 }}>OpenClaw</span> — a configured contact interface that keeps you connected to the full system without requiring a separate login.
             </p>
+
+            {/* What you receive */}
+            <div className="reveal" style={{ marginBottom: 32 }}>
+              <div style={{
+                fontSize: 11, fontWeight: 700, letterSpacing: '0.1em',
+                textTransform: 'uppercase', color: 'rgba(240,238,232,0.35)',
+                marginBottom: 14,
+              }}>
+                What You Receive
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {[
+                  'Daily business briefings & summaries',
+                  'Real-time lead alerts & qualification updates',
+                  'KPI shifts & performance notifications',
+                  'Operational reminders & follow-up prompts',
+                ].map((item, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ color: '#C9A84C', fontSize: 10 }}>◈</span>
+                    <span style={{ fontSize: 14, color: 'rgba(240,238,232,0.6)' }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* Channels */}
             <div className="reveal">
               <div style={{
                 fontSize: 11, fontWeight: 700, letterSpacing: '0.1em',
                 textTransform: 'uppercase', color: 'rgba(240,238,232,0.35)',
-                marginBottom: 16,
+                marginBottom: 12,
               }}>
-                Delivered through your channel
+                Delivered through your preferred channel
               </div>
-              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {CHANNELS.map(ch => (
                   <div key={ch.name} style={{
-                    padding: '8px 16px',
+                    padding: '7px 14px',
                     background: 'rgba(255,255,255,0.04)',
                     border: '1px solid rgba(255,255,255,0.08)',
                     borderRadius: 8,
-                    fontSize: 13, fontWeight: 600, color: 'rgba(240,238,232,0.7)',
-                    display: 'flex', alignItems: 'center', gap: 7,
+                    fontSize: 13, fontWeight: 600, color: 'rgba(240,238,232,0.65)',
                     transition: 'all 0.2s',
                     cursor: 'default',
                   }}
@@ -136,10 +155,9 @@ export default function OpenClawSection() {
                     onMouseLeave={e => {
                       e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
                       e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                      e.currentTarget.style.color = 'rgba(240,238,232,0.7)';
+                      e.currentTarget.style.color = 'rgba(240,238,232,0.65)';
                     }}
                   >
-                    <span style={{ fontSize: 11, color: ch.color }}>{ch.icon}</span>
                     {ch.name}
                   </div>
                 ))}
@@ -165,21 +183,24 @@ export default function OpenClawSection() {
                   width: 28, height: 28, borderRadius: 8,
                   background: 'linear-gradient(135deg, #C9A84C, #E8C97A)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 12, color: '#06080F', fontWeight: 800,
-                }}>⬡</div>
+                  fontSize: 11, color: '#06080F', fontWeight: 900,
+                  letterSpacing: '0.02em',
+                }}>DS</div>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#F0EEE8' }}>OpenClaw</div>
-                  <div style={{ fontSize: 11, color: 'rgba(240,238,232,0.4)' }}>● Active — watching your business</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#F0EEE8' }}>Distinction OS</div>
+                  <div style={{ fontSize: 11, color: 'rgba(240,238,232,0.4)' }}>
+                    <span style={{ color: '#5CC8B0' }}>●</span> Communication layer active
+                  </div>
                 </div>
               </div>
 
               {/* Messages */}
-              <div style={{ padding: '20px' }}>
+              <div style={{ padding: '16px' }}>
                 {MESSAGES.map((msg, i) => (
                   <div key={i}
                     onClick={() => setActiveMsg(i)}
                     style={{
-                      marginBottom: 12,
+                      marginBottom: 10,
                       padding: '14px 16px',
                       borderRadius: 10,
                       border: `1px solid ${activeMsg === i ? msg.accent + '40' : 'rgba(255,255,255,0.05)'}`,
@@ -208,6 +229,16 @@ export default function OpenClawSection() {
                     </p>
                   </div>
                 ))}
+              </div>
+
+              {/* Footer note */}
+              <div style={{
+                padding: '12px 20px',
+                borderTop: '1px solid rgba(255,255,255,0.05)',
+                fontSize: 11, color: 'rgba(240,238,232,0.25)',
+                textAlign: 'center', letterSpacing: '0.03em',
+              }}>
+                Configured as part of your Distinction OS installation
               </div>
             </div>
           </div>

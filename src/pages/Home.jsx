@@ -6,9 +6,13 @@ import SystemStackSection from '../components/dc/SystemStackSection';
 import CurrentStackSection from '../components/dc/CurrentStackSection';
 import ProcessSection from '../components/dc/ProcessSection';
 import OpenClawSection from '../components/dc/OpenClawSection';
-import PricingSection from '../components/dc/PricingSection';
-import FinalCTASection from '../components/dc/FinalCTASection';
+import PortalShowcaseSection from '../components/dc/PortalShowcaseSection';
+import MetricsSection from '../components/dc/MetricsSection';
+import CaseStudiesSection from '../components/dc/CaseStudiesSection';
 import RoiCalculatorSection from '../components/dc/RoiCalculatorSection';
+import PricingSection from '../components/dc/PricingSection';
+import FAQSection from '../components/dc/FAQSection';
+import FinalCTASection from '../components/dc/FinalCTASection';
 import Footer from '../components/dc/Footer';
 
 export default function Home() {
@@ -21,9 +25,13 @@ export default function Home() {
       <SystemStackSection />
       <CurrentStackSection />
       <ProcessSection />
+      <PortalShowcaseSection />
       <OpenClawSection />
+      <MetricsSection />
+      <CaseStudiesSection />
       <RoiCalculatorSection />
       <PricingSection />
+      <FAQSection />
       <FinalCTASection />
       <Footer />
     </div>
