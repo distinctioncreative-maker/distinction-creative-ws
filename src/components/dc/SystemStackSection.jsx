@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useReveal from '../../hooks/useReveal';
 
 const LAYERS = [
