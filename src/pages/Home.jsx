@@ -8,6 +8,7 @@ import ProcessSection from '../components/dc/ProcessSection';
 import OpenClawSection from '../components/dc/OpenClawSection';
 import PricingSection from '../components/dc/PricingSection';
 import FinalCTASection from '../components/dc/FinalCTASection';
+import RoiCalculatorSection from '../components/dc/RoiCalculatorSection';
 import Footer from '../components/dc/Footer';
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <CurrentStackSection />
       <ProcessSection />
       <OpenClawSection />
+      <RoiCalculatorSection />
       <PricingSection />
       <FinalCTASection />
       <Footer />
