@@ -4,7 +4,7 @@ const METRICS = [
   {
     value: '< 10s',
     label: 'AI Response Time',
-    sub: 'vs industry avg of 6+ hours',
+    sub: 'vs. industry avg of 6+ hours',
     accent: '#5CC8B0',
     rgb: '92,200,176',
   },
@@ -25,17 +25,17 @@ const METRICS = [
   {
     value: '100%',
     label: 'Unified Visibility',
-    sub: 'all data in one portal',
+    sub: 'all data, one portal',
     accent: '#A078F0',
     rgb: '160,120,240',
   },
 ];
 
 const BAR_DATA = [
-  { label: 'Lead Response', before: 22, after: 94, color: '#5CC8B0' },
-  { label: 'Qualification Rate', before: 38, after: 71, color: '#C9A84C' },
-  { label: 'Operational Clarity', before: 19, after: 88, color: '#638CFE' },
-  { label: 'Follow-Up Speed', before: 28, after: 92, color: '#A078F0' },
+  { label: 'Lead Response Speed', before: 14, after: 96, color: '#5CC8B0', beforeLabel: 'Manual — hours', afterLabel: 'AI — seconds' },
+  { label: 'Qualified Lead Rate', before: 36, after: 74, color: '#C9A84C', beforeLabel: 'Unqualified funnel', afterLabel: 'Chatbot qualified' },
+  { label: 'Operational Visibility', before: 18, after: 91, color: '#638CFE', beforeLabel: 'Fragmented tools', afterLabel: 'One portal' },
+  { label: 'Follow-Up Execution', before: 25, after: 93, color: '#A078F0', beforeLabel: 'Manual', afterLabel: 'Automated sequences' },
 ];
 
 export default function MetricsSection() {
@@ -59,135 +59,153 @@ export default function MetricsSection() {
 
   return (
     <section ref={ref} style={{
-      background: '#090C16', padding: '120px 32px',
+      background: '#090C16', padding: '120px 56px',
       position: 'relative', overflow: 'hidden',
     }}>
-      {/* Glow */}
       <div style={{
         position: 'absolute', top: '40%', left: '50%',
         transform: 'translate(-50%,-50%)',
         width: 900, height: 500,
-        background: 'radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 65%)',
         pointerEvents: 'none',
       }} />
 
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 80 }}>
           <div className="reveal" style={{
-            fontSize: 11, fontWeight: 700, letterSpacing: '0.14em',
-            textTransform: 'uppercase', color: '#C9A84C', marginBottom: 20,
+            fontSize: 10, fontWeight: 700, letterSpacing: '0.18em',
+            textTransform: 'uppercase', color: 'rgba(201,168,76,0.7)', marginBottom: 20,
           }}>
             System Performance
           </div>
           <h2 className="reveal" style={{
             fontFamily: 'Playfair Display, Georgia, serif',
             fontSize: 'clamp(36px, 4vw, 56px)',
-            fontWeight: 700, lineHeight: 1.1,
+            fontWeight: 700, lineHeight: 1.08,
             letterSpacing: '-0.025em', color: '#F0EEE8',
-            marginBottom: 20,
+            marginBottom: 18,
           }}>
-            The Numbers Behind<br />
+            Infrastructure That<br />
             <span style={{
               background: 'linear-gradient(135deg, #B8902A 0%, #E8C97A 50%, #C9A84C 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>
-              Distinction OS.
+              Moves the Numbers.
             </span>
           </h2>
           <p className="reveal" style={{
-            fontSize: 17, color: 'rgba(240,238,232,0.48)',
-            maxWidth: 520, margin: '0 auto', lineHeight: 1.75,
+            fontSize: 16, color: 'rgba(240,238,232,0.42)',
+            maxWidth: 480, margin: '0 auto', lineHeight: 1.8,
           }}>
-            Infrastructure performance benchmarks across lead handling, response speed, operational visibility, and conversion infrastructure.
+            Real benchmarks across the four dimensions that drive business performance after a Distinction OS installation.
           </p>
         </div>
 
         {/* Stat cards */}
         <div className="reveal" style={{
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 16, marginBottom: 64,
+          gap: 14, marginBottom: 56,
         }}>
           {METRICS.map((m, i) => (
             <div key={i} style={{
-              padding: '32px 28px',
+              padding: '36px 24px',
               background: `rgba(${m.rgb},0.04)`,
-              border: `1px solid rgba(${m.rgb},0.15)`,
-              borderRadius: 16,
+              border: `1px solid rgba(${m.rgb},0.12)`,
+              borderRadius: 14,
               textAlign: 'center',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              transition: 'transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease, border-color 0.35s',
             }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `0 16px 48px rgba(${m.rgb},0.12)`; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = `0 20px 60px rgba(${m.rgb},0.1)`;
+                e.currentTarget.style.borderColor = `rgba(${m.rgb},0.25)`;
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = `rgba(${m.rgb},0.12)`;
+              }}
             >
               <div style={{
                 fontFamily: 'Inter', fontWeight: 900,
-                fontSize: 44, letterSpacing: '-0.04em',
-                color: m.accent, lineHeight: 1, marginBottom: 12,
+                fontSize: 46, letterSpacing: '-0.04em',
+                color: m.accent, lineHeight: 1, marginBottom: 14,
               }}>{m.value}</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#F0EEE8', marginBottom: 6 }}>{m.label}</div>
-              <div style={{ fontSize: 12, color: 'rgba(240,238,232,0.38)', lineHeight: 1.4 }}>{m.sub}</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#F0EEE8', marginBottom: 8, letterSpacing: '-0.005em' }}>{m.label}</div>
+              <div style={{ fontSize: 11, color: 'rgba(240,238,232,0.32)', lineHeight: 1.5, letterSpacing: '0.02em' }}>{m.sub}</div>
             </div>
           ))}
         </div>
 
-        {/* Before / After bar chart */}
+        {/* Before / After */}
         <div className="reveal" style={{
-          background: 'rgba(255,255,255,0.02)',
-          border: '1px solid rgba(255,255,255,0.065)',
-          borderRadius: 20, padding: '44px 48px',
+          background: 'rgba(255,255,255,0.018)',
+          border: '1px solid rgba(255,255,255,0.055)',
+          borderRadius: 18, padding: '48px 52px',
         }}>
           <div style={{
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-            marginBottom: 36,
+            display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end',
+            marginBottom: 44,
           }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: 8 }}>
-                Before vs After Distinction OS
+              <div style={{
+                fontSize: 10, fontWeight: 700, letterSpacing: '0.16em',
+                textTransform: 'uppercase', color: 'rgba(201,168,76,0.6)', marginBottom: 10,
+              }}>
+                Before vs. After Distinction OS
               </div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: '#F0EEE8', letterSpacing: '-0.01em' }}>
+              <div style={{
+                fontFamily: 'Playfair Display, Georgia, serif',
+                fontSize: 22, fontWeight: 700, color: '#F0EEE8', letterSpacing: '-0.01em',
+              }}>
                 Business Performance Benchmark
               </div>
             </div>
-            <div style={{ display: 'flex', gap: 20 }}>
+            <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <div style={{ width: 10, height: 10, borderRadius: 2, background: 'rgba(255,255,255,0.15)' }} />
-                <span style={{ fontSize: 12, color: 'rgba(240,238,232,0.4)' }}>Before</span>
+                <div style={{ width: 24, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.12)' }} />
+                <span style={{ fontSize: 11, color: 'rgba(240,238,232,0.35)', letterSpacing: '0.04em' }}>Before</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <div style={{ width: 10, height: 10, borderRadius: 2, background: '#C9A84C' }} />
-                <span style={{ fontSize: 12, color: 'rgba(240,238,232,0.4)' }}>After</span>
+                <div style={{ width: 24, height: 4, borderRadius: 2, background: '#C9A84C' }} />
+                <span style={{ fontSize: 11, color: 'rgba(240,238,232,0.35)', letterSpacing: '0.04em' }}>After</span>
               </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
             {BAR_DATA.map((row, i) => (
               <div key={i}>
                 <div style={{
-                  display: 'flex', justifyContent: 'space-between',
-                  marginBottom: 8,
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                  marginBottom: 12,
                 }}>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(240,238,232,0.7)' }}>{row.label}</span>
-                  <span style={{ fontSize: 12, color: row.color, fontWeight: 700 }}>+{row.after - row.before}% improvement</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(240,238,232,0.65)', letterSpacing: '0.01em' }}>{row.label}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                    <span style={{ fontSize: 11, color: 'rgba(240,238,232,0.28)', letterSpacing: '0.02em' }}>{row.beforeLabel} → {row.afterLabel}</span>
+                    <span style={{ fontSize: 12, color: row.color, fontWeight: 700, letterSpacing: '-0.01em' }}>+{row.after - row.before}pts</span>
+                  </div>
                 </div>
-                <div style={{ position: 'relative', height: 8 }}>
-                  {/* Before bar */}
+                {/* Track */}
+                <div style={{ position: 'relative', height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.06)' }}>
+                  {/* Before marker */}
                   <div style={{
                     position: 'absolute', top: 0, left: 0,
-                    height: '100%', borderRadius: 4,
+                    height: '100%', borderRadius: 3,
                     background: 'rgba(255,255,255,0.1)',
                     width: `${row.before}%`,
                   }} />
                   {/* After bar */}
                   <div style={{
                     position: 'absolute', top: 0, left: 0,
-                    height: '100%', borderRadius: 4,
-                    background: `linear-gradient(90deg, ${row.color}99, ${row.color})`,
+                    height: '100%', borderRadius: 3,
+                    background: `linear-gradient(90deg, ${row.color}70, ${row.color})`,
                     width: animated ? `${row.after}%` : '0%',
-                    transition: `width 1.2s cubic-bezier(0.16,1,0.3,1) ${i * 0.15}s`,
-                    boxShadow: `0 0 12px ${row.color}40`,
+                    transition: `width 1.4s cubic-bezier(0.16,1,0.3,1) ${i * 0.18}s`,
+                    boxShadow: `0 0 10px ${row.color}35`,
                   }} />
                 </div>
               </div>

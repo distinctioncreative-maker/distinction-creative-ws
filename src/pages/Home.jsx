@@ -1,6 +1,6 @@
 import Navigation from '../components/dc/Navigation';
 import HeroSection from '../components/dc/HeroSection';
-import TrustStrip from '../components/dc/TrustStrip';
+// TrustStrip removed — metrics covered in MetricsSection
 import IntroSection from '../components/dc/IntroSection';
 import SystemStackSection from '../components/dc/SystemStackSection';
 import CurrentStackSection from '../components/dc/CurrentStackSection';
@@ -20,7 +20,7 @@ export default function Home() {
     <div style={{ backgroundColor: '#06080F', color: '#F0EEE8', minHeight: '100vh' }}>
       <Navigation />
       <HeroSection />
-      <TrustStrip />
+      {/* TrustStrip removed — redundant with MetricsSection */}
       <IntroSection />
       <SystemStackSection />
       <CurrentStackSection />
