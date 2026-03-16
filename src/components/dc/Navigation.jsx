@@ -39,39 +39,23 @@ export default function Navigation() {
         }}>
 
           {/* Logo */}
-          <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 14 }}>
-            <div style={{
-              width: 36, height: 36, borderRadius: 9,
-              background: 'linear-gradient(150deg, #C9A84C 0%, #F0D880 55%, #B8902A 100%)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 4px 20px rgba(201,168,76,0.28), inset 0 1px 0 rgba(255,255,255,0.3)',
-              flexShrink: 0,
-            }}>
-              <span style={{
-                fontFamily: 'Playfair Display, Georgia, serif',
-                fontSize: 17, fontWeight: 900,
-                color: '#06080F', letterSpacing: '-0.04em',
-                lineHeight: 1, display: 'block', marginTop: 1,
-              }}>D</span>
-            </div>
-
-            <div>
+          <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <div style={{
                 fontFamily: 'Playfair Display, Georgia, serif',
                 fontSize: 16, fontWeight: 700,
                 color: '#F0EEE8', letterSpacing: '-0.015em', lineHeight: 1,
               }}>
                 Distinction
-                <span style={{ color: 'rgba(240,238,232,0.38)', fontWeight: 400, marginLeft: 6, fontSize: 15 }}>
+                <span style={{ color: 'rgba(240,238,232,0.45)', fontWeight: 400, marginLeft: 7, fontSize: 15 }}>
                   Creative
                 </span>
               </div>
               <div style={{
-                fontSize: 9, fontWeight: 600,
-                color: 'rgba(201,168,76,0.55)',
-                letterSpacing: '0.2em',
+                fontSize: 8.5, fontWeight: 700,
+                color: 'rgba(201,168,76,0.5)',
+                letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                marginTop: 4,
               }}>AI Infrastructure</div>
             </div>
           </a>
