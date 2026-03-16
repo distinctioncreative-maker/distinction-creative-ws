@@ -43,7 +43,9 @@ export default function OpenClawChatSimulator() {
   }, [idx]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
   }, [shown, typing]);
 
   return (
