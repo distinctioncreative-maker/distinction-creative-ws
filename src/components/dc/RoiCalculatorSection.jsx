@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import useReveal from '../../hooks/useReveal';
 
 const BOOST_PRESETS = [
   { label: 'Conservative', pct: 10, desc: 'Baseline system effect' },

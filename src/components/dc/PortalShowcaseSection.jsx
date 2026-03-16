@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import useReveal from '../../hooks/useReveal';
 
 const TABS = [
   { id: 'leads', label: 'Lead Pipeline', color: '#5CC8B0', rgb: '92,200,176' },

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import useReveal from '../../hooks/useReveal';
 
 const RESULTS = [
   {
